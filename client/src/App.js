@@ -1,9 +1,10 @@
 import './App.css';
+import LoginPage from './components/Login/login';
 
 function App() {
   return (
     <div className="App">
-      Hello
+      <LoginPage/>
     </div>
   );
 }
