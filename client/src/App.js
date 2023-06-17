@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar/Navbar';
 import SideDash from './Components/SideDash/SideDash';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Patients from './pages/Dashboard/Patients';
+import PatientDetails from './pages/Dashboard/PatientDetails';
 import Messages from './pages/Dashboard/Messages';
 import Settings from './pages/Dashboard/Settings';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/patients' element={<Patients/>}/>
           <Route path='/messages' element={<Messages/>}/>
           <Route path='/settings' element={<Settings/>}/>
+          <Route path="/patients/:id" element={<PatientDetails/>}/>
         </Routes>
       </div>
     </BrowserRouter>
