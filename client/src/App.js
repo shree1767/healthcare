@@ -7,8 +7,9 @@ import Patients from './pages/Dashboard/Patients';
 import PatientDetails from './pages/Dashboard/PatientDetails';
 import Messages from './pages/Dashboard/Messages';
 import Settings from './pages/Dashboard/Settings';
-
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
+import Prediction from './pages/Dashboard/Prediction';
+import AddPatients from './pages/Dashboard/AddPatients';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route path='/messages' element={<Messages/>}/>
           <Route path='/settings' element={<Settings/>}/>
           <Route path="/patients/:id" element={<PatientDetails/>}/>
+          <Route path="/prediction" element={<Prediction/>}/>
+          <Route path="/addpatients" element={<AddPatients/>}/>
         </Routes>
       </div>
     </BrowserRouter>
