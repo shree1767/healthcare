@@ -15,14 +15,7 @@ const AddPatients = () => {
     e.preventDefault();
 
     // Create a new patient object with the entered details
-    const newPatient = {
-      name: `${firstName} ${lastName}`,
-      dateOfBirth: `${day}/${month}/${year}`,
-      sex,
-      contactNumber,
-      email,
-      address,
-    };
+   
 
     // Perform any additional logic (e.g., API call to add the patient to the database)
 
