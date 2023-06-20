@@ -29,7 +29,7 @@ const Prediction = () => {
             </div>
         </div>
         <div>
-            <img src={prediction}/>
+            <img src={prediction} alt='prediction'/>
         </div>
     </div>
   )
