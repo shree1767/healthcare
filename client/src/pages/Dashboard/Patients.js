@@ -41,6 +41,9 @@ const Patients = () => {
           ))}
         </tbody>
       </table>
+      <div className='my-[10vh] text-center'>
+        <Link to='/addpatients'><button className='py-3 px-10 bg-[#455B5D] text-white text-[25px] rounded-[6px] shadow'>Add Patients</button></Link>
+      </div>
 
     </div> 
     
