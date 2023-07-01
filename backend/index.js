@@ -10,7 +10,6 @@ const resourceMaker = (data) =>{
   const currID = arr[1]
   exec(`ls ./resources/patient/${currID}*` , (out,o2,o3)=>{
     if(o2.length > 0){
-      console.log("here once");
       newObservation(arr);
     }
     else{
