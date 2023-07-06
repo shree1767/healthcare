@@ -33,6 +33,30 @@ const AddPatients = () => {
     // Redirect to the '/patients' route or update the patient list state
   };
 
+  // Options for the date dropdown (1-31)
+  const dateOptions = Array.from({ length: 31 }, (_, index) => index + 1);
+
+  // Options for the month dropdown (January-December)
+  const monthOptions = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  // Options for the year dropdown (1900-2023)
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from({ length: currentYear - 1900 + 1 }, (_, index) => currentYear - index);
+
+
   return (
     <div className="pt-10 px-5 w-[70vw] p-4">
       <form onSubmit={handleSubmit}>
@@ -66,49 +90,52 @@ const AddPatients = () => {
         </div>
         
         <div className='grid grid-cols-4 justify-between'>
-            <div className='font-medium py-3 text-lg'>Date of Birth</div>
-            <div className="flex mx-5 flex-col mb-4">
-          
-          <select
-            id="day"
-            value={day}
-            onChange={(e) => setDay(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[15vw]"
-          >
-            {/* Add options for day */}
-          </select>
-          <label htmlFor="day" className="mb-2 font-medium text-gray-500">
-            Day
-          </label>
-        </div>
-        <div className="flex mx-5 flex-col mb-4">
-          <select
-            id="month"
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[15vw]"
-          >
-            {/* Add options for month */}
-          </select>
-          <label htmlFor="month" className="mb-2 font-medium text-gray-500">
-            Month
-          </label>
-        </div>
-        <div className="flex mx-5 flex-col mb-4">
-          
-          <select
-            id="year"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[15vw]"
-          >
-            {/* Add options for year */}
-          </select>
-          <label htmlFor="year" className="mb-2 font-medium text-gray-500">
-            Year
-          </label>
-        </div>
-
+          <div className='font-medium py-3 text-lg'>Date of Birth</div>
+          <div className="flex mx-5 flex-col mb-4">
+            <select
+              id="day"
+              value={day}
+              onChange={(e) => setDay(e.target.value)}
+              className="border border-gray-300 p-2 rounded w-[15vw]"
+            >
+              {dateOptions.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+            <label htmlFor="day" className="mb-2 font-medium text-gray-500">
+              Day
+            </label>
+          </div>
+          <div className="flex mx-5 flex-col mb-4">
+            <select
+              id="month"
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+              className="border border-gray-300 p-2 rounded w-[15vw]"
+            >
+              {monthOptions.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+            <label htmlFor="month" className="mb-2 font-medium text-gray-500">
+              Month
+            </label>
+          </div>
+          <div className="flex mx-5 flex-col mb-4">
+            <select
+              id="year"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              className="border border-gray-300 p-2 rounded w-[15vw]"
+            >
+              {yearOptions.map((option) => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+            <label htmlFor="year" className="mb-2 font-medium text-gray-500">
+              Year
+            </label>
+          </div>
         </div>
         
 
@@ -133,6 +160,8 @@ const AddPatients = () => {
             type="text"
             id="contactNumber"
             value={contactNumber}
+            minLength={10}
+            maxLength={10}
             onChange={(e) => setContactNumber(e.target.value)}
             className="border border-gray-300 p-2 rounded w-[49vw]"
           />
@@ -164,7 +193,7 @@ const AddPatients = () => {
         <div className='text-center my-[10vh]'>
         <button
           type="submit"
-          className="py-3 px-10 bg-[#455B5D] text-white text-[25px] rounded-[6px] shadow"
+          className="md:py-3 md:px-10 py-2 px-8 bg-[#455B5D] text-white md:text-[25px] text-[15px] rounded-[6px] shadow"
         >
           Add Patient
         </button>

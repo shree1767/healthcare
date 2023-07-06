@@ -13,7 +13,7 @@ const Prediction = () => {
   const navigateto=()=>{
     navigate(`/patients/`)
   }
-
+  
   return (
     <div className='pt-10 px-5 w-[70vw]'>
       <div className='grid grid-cols-2 space-x-5'>
@@ -51,7 +51,7 @@ const Prediction = () => {
         </div>
       </div>
       <div>
-        <img src={prediction} alt='prediction' />
+        <img src={prediction} alt='prediction' className='w-[58vw] mx-auto'/>
       </div>
     </div>
   );
