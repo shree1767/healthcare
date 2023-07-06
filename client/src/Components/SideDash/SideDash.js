@@ -18,7 +18,8 @@ const SideDash = () => {
   return (
     <nav className="flex sticky flex-col m-10 text-[30px] rounded-lg justify-between bg-[#006797] text-white h-[75vh] w-[20vw] pl-4 py-4">
       <div>
-        {links.map((link) => (
+        {
+        links.map((link) => (
           <NavLink
             to={link.path}
             key={link.id}
@@ -28,7 +29,8 @@ const SideDash = () => {
             <img src={link.image} alt={link.title} className="w-6 h-6 mr-2" />
             {link.title}
           </NavLink>
-        ))}
+        ))
+        }
     </div>
       <div className="p-4 mb-10 flex space-x-3 rounded-lg font-light  transition-colors cursor-pointer">
         <img src={logout} alt='logout'/>
