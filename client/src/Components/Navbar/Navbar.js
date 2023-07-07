@@ -12,7 +12,7 @@ const Navbar = () => {
         <img src={logo} alt="Logo" className="md:w-[8vw] w-[10vw] h-[10vw]" />
         <span className="md:text-[45px] text-[25px] font-[700]">DocView</span>
       </div>
-      <div className="searchbar md:flex items-center md:bg-[#F4F4F4] rounded-[25px] md:w-full md:w-[40vw] md:h-[6vh] md:mt-4 sm:mt-0">
+      <div className="searchbar md:flex items-center md:bg-[#F4F4F4] rounded-[25px] md:w-full md:w-[38vw] md:h-[6vh] md:mt-4 sm:mt-0">
         {/* Insert the search icon */}
         <FaSearch className="mx-5 md:text-[#DBDBDB] text-white" />
         {/* Insert your search bar component here */}

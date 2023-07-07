@@ -190,7 +190,7 @@ const AddPatients = () => {
             className="border border-gray-300 p-2 rounded w-[49vw]"
           />
         </div>
-        <div className='text-center my-[10vh]'>
+        <div className='text-center my-[5vh]'>
         <button
           type="submit"
           className="md:py-3 md:px-10 py-2 px-8 bg-[#455B5D] text-white md:text-[25px] text-[15px] rounded-[6px] shadow"
