@@ -25,7 +25,7 @@ function App() {
           <Route path='/messages' element={<Messages/>}/>
           <Route path='/settings' element={<Settings/>}/>
           <Route path="/patients/:id" element={<PatientDetails/>}/>
-          <Route path="/prediction" element={<Prediction/>}/>
+          <Route path="/prediction/:id" element={<Prediction/>}/>
           <Route path="/addpatients" element={<AddPatients/>}/>
         </Routes>
       </div>
