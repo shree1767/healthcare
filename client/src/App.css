@@ -4,3 +4,8 @@
     /* Add more font formats if necessary */
     /* Add other font properties like font-weight and font-style if needed */
   }
+
+*{
+  scroll-behavior: smooth;
+  overflow: hidden;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 
 import "./SideDash.css";
 import logout from "./logout.svg";
@@ -12,7 +12,7 @@ import overview from "./overview.svg";
 
 const SideDash = () => {
   const links = [
-    { id: 1, title: "Overview", image: overview, path: "/" },
+    { id: 1, title: "Overview", image: overview, path: "/dashboard" },
     { id: 2, title: "Patients", image: patients, path: "/patients" },
     { id: 3, title: "Messages", image: messages, path: "/messages" },
     { id: 4, title: "Settings", image: settings, path: "/settings" },
@@ -39,10 +39,10 @@ const SideDash = () => {
             </NavLink>
           ))}
         </div>
-        <div className="p-4 mb-10 flex space-x-3 rounded-lg font-light cursor-pointer">
+        <Link to='/' className="p-4 mt-[30vh] flex space-x-3 rounded-lg font-light cursor-pointer">
           <img src={logout} alt="logout" className="logout-icon" />
           <span>Logout</span>
-        </div>
+        </Link>
       </nav>
       {/* mobile nav */}
       <nav className="md:hidden py-4 bg-[#006797] text-white px-2">
@@ -91,10 +91,10 @@ const SideDash = () => {
                     {link.title}
                   </NavLink>
                 ))}
-                <div className="p-4 mb-10 flex space-x-3 rounded-lg font-light cursor-pointer">
+                <Link to='/' className="p-4 pt-[50vh] flex space-x-3 rounded-lg font-light cursor-pointer">
                   <img src={logout} alt="logout" className="logout-icon w-5 h-5" />
                   <span>Logout</span>
-                </div>
+                </Link>
               </div>
             </div>
           )}

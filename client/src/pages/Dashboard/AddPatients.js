@@ -15,7 +15,6 @@ const AddPatients = () => {
     e.preventDefault();
 
     // Create a new patient object with the entered details
-   
 
     // Perform any additional logic (e.g., API call to add the patient to the database)
 
@@ -54,106 +53,115 @@ const AddPatients = () => {
 
   // Options for the year dropdown (1900-2023)
   const currentYear = new Date().getFullYear();
-  const yearOptions = Array.from({ length: currentYear - 1900 + 1 }, (_, index) => currentYear - index);
-
+  const yearOptions = Array.from(
+    { length: currentYear - 1900 + 1 },
+    (_, index) => currentYear - index
+  );
 
   return (
-    <div className="pt-10 px-5 w-[70vw] p-4">
+    <div className="md:pt-10 px-5 md:w-[70vw] w-full p-4 md:h-[80vh] h-[90vh] overflow-y-auto">
       <form onSubmit={handleSubmit}>
-        <div className='flex space-x-3'>
-            <div className='font-medium py-3 text-lg'>Name</div>
-            <div className="flex flex-col mb-4 pl-[14vw]">
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <div className="font-medium md:py-3 text-lg">Name</div>
+          <div className="flex flex-col">
             <input
-                type="text"
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className="border border-gray-300 p-2 rounded"
+              type="text"
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="border border-gray-300 p-2 rounded mb-2 md:mb-0"
             />
-            <label htmlFor="firstName" className="mb-2 text-gray-500 font-medium">
-                First Name
+            <label htmlFor="firstName" className="text-gray-500 font-medium">
+              First Name
             </label>
-            </div>
-            <div className="flex flex-col mb-4">
-           
+          </div>
+          <div className="flex flex-col">
             <input
-                type="text"
-                id="lastName"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className="border border-gray-300 p-2 rounded"
+              type="text"
+              id="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="border border-gray-300 p-2 rounded"
             />
-             <label htmlFor="lastName" className="mb-2 text-gray-500 font-medium">
-                Last Name
+            <label htmlFor="lastName" className="text-gray-500 font-medium">
+              Last Name
             </label>
-            </div>
+          </div>
         </div>
-        
-        <div className='grid grid-cols-4 justify-between'>
-          <div className='font-medium py-3 text-lg'>Date of Birth</div>
-          <div className="flex mx-5 flex-col mb-4">
+
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <div className="font-medium md:py-3 text-lg">Date of Birth</div>
+          <div className="flex flex-col">
             <select
               id="day"
               value={day}
               onChange={(e) => setDay(e.target.value)}
-              className="border border-gray-300 p-2 rounded w-[15vw]"
+              className="border border-gray-300 p-2 rounded"
             >
               {dateOptions.map((option) => (
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
             </select>
-            <label htmlFor="day" className="mb-2 font-medium text-gray-500">
+            <label htmlFor="day" className="text-gray-500 font-medium">
               Day
             </label>
           </div>
-          <div className="flex mx-5 flex-col mb-4">
+          <div className="flex flex-col">
             <select
               id="month"
               value={month}
               onChange={(e) => setMonth(e.target.value)}
-              className="border border-gray-300 p-2 rounded w-[15vw]"
+              className="border border-gray-300 p-2 rounded"
             >
               {monthOptions.map((option) => (
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
             </select>
-            <label htmlFor="month" className="mb-2 font-medium text-gray-500">
+            <label htmlFor="month" className="text-gray-500 font-medium">
               Month
             </label>
           </div>
-          <div className="flex mx-5 flex-col mb-4">
+          <div className="flex flex-col">
             <select
               id="year"
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="border border-gray-300 p-2 rounded w-[15vw]"
+              className="border border-gray-300 p-2 rounded"
             >
               {yearOptions.map((option) => (
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
             </select>
-            <label htmlFor="year" className="mb-2 font-medium text-gray-500">
+            <label htmlFor="year" className="text-gray-500 font-medium">
               Year
             </label>
           </div>
         </div>
-        
 
-        <div className="flex items-center space-x-[16vw] mb-4">
-            <div className='font-medium py-3 text-lg'>Sex</div>
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <label htmlFor="sex" className="font-medium md:py-3 text-lg">
+            Sex
+          </label>
           <select
             id="sex"
             value={sex}
             onChange={(e) => setSex(e.target.value)}
-            className="border border-gray-300 p-3 rounded w-full"
+            className="border border-gray-300 p-3 rounded"
           >
             <option>Please Select</option>
             <option>Male</option>
             <option>Female</option>
           </select>
         </div>
-        <div className="flex items-center justify-between mb-4">
-          <label htmlFor="contactNumber" className="font-medium py-3 text-lg">
+
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <label htmlFor="contactNumber" className="font-medium md:py-3 text-lg">
             Contact Number
           </label>
           <input
@@ -163,11 +171,12 @@ const AddPatients = () => {
             minLength={10}
             maxLength={10}
             onChange={(e) => setContactNumber(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[49vw]"
+            className="border border-gray-300 p-2 rounded"
           />
         </div>
-        <div className="flex items-center justify-between mb-4">
-          <label htmlFor="email" className="font-medium py-3 text-lg">
+
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <label htmlFor="email" className="font-medium md:py-3 text-lg">
             Email
           </label>
           <input
@@ -175,11 +184,12 @@ const AddPatients = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[49vw]"
+            className="border border-gray-300 p-2 rounded"
           />
         </div>
-        <div className="flex items-center justify-between mb-4">
-          <label htmlFor="address" className="font-medium py-3 text-lg">
+
+        <div className="grid md:grid-cols-4 gap-4 mb-4">
+          <label htmlFor="address" className="font-medium md:py-3 text-lg">
             Address
           </label>
           <input
@@ -187,16 +197,17 @@ const AddPatients = () => {
             id="address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            className="border border-gray-300 p-2 rounded w-[49vw]"
+            className="border border-gray-300 p-2 rounded"
           />
         </div>
-        <div className='text-center my-[5vh]'>
-        <button
-          type="submit"
-          className="md:py-3 md:px-10 py-2 px-8 bg-[#455B5D] text-white md:text-[25px] text-[15px] rounded-[6px] shadow"
-        >
-          Add Patient
-        </button>
+
+        <div className="text-center md:mt-8">
+          <button
+            type="submit"
+            className="md:py-3 md:px-10 py-2 px-8 bg-[#455B5D] text-white md:text-[25px] text-[15px] rounded-[6px] shadow"
+          >
+            Add Patient
+          </button>
         </div>
       </form>
     </div>
@@ -204,3 +215,4 @@ const AddPatients = () => {
 };
 
 export default AddPatients;
+

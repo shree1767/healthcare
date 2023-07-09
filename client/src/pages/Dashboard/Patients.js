@@ -9,8 +9,8 @@ const Patients = () => {
   ];
 
   return (
-    <div className='pt-10 px-5 w-[70vw]'>
-      <div style={{ overflowX: 'auto' }}>
+    <div className='pt-10 mx-5 w-[70vw] md:h-[80vh] h-[90vh] overflow-y-auto'>
+      <div className='overflow-x-auto'>
         <table className="w-full">
           <thead>
             <tr className="bg-[#D6EDEF] text-[#0F2B46] text-[20px]">
@@ -40,7 +40,7 @@ const Patients = () => {
           </tbody>
         </table>
       </div>
-      <div className='my-[10vh] text-center'>
+      <div className='mt-[10vh] text-center'>
         <Link to='/addpatients'>
           <button className='md:py-3 md:px-10 py-2 px-8 bg-[#455B5D] text-white md:text-[25px] text-[15px] rounded-[6px] shadow'>Add Patients</button>
         </Link>
@@ -50,3 +50,4 @@ const Patients = () => {
 };
 
 export default Patients;
+
