@@ -59,7 +59,7 @@ const AddPatients = () => {
   );
 
   return (
-    <div className="md:pt-10 px-5 md:w-[70vw] w-full p-4 md:h-[80vh] h-[90vh] overflow-y-auto">
+    <div className="md:pt-10 w-[40vw] md:w-[70vw] w-full py-20 px-8 md:h-[80vh] h-[90vh] overflow-y-auto">
       <form onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-4 gap-4 mb-4">
           <div className="font-medium md:py-3 text-lg">Name</div>

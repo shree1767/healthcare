@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dashboard = () => {
   return (
-    <div className='pt-10 px-5 w-[70vw] overflow-y-auto md:h-[80vh] h-[90vh]'>
+    <div className='pt-10 pl-4 mx-auto  md:w-[70vw] overflow-y-auto md:h-[80vh] h-[90vh]'>
       <h1 className='text-[25px] font-[400] text-[#0F2B46]'>Hi Dr. Katja!</h1>
       <p className='text-[20px] font-[400] text-[#5B777A]'>Your data at a glance</p>
       <div className=''>
