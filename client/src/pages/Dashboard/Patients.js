@@ -9,11 +9,11 @@ const Patients = () => {
   ];
 
   return (
-    <div className='pt-10 mx-5 w-[70vw] md:h-[80vh] h-[90vh] overflow-y-auto'>
+    <div className='pt-20 mx-5 w-[99vw] md:w-[70vw] md:h-[80vh] h-[90vh] overflow-y-auto'>
       <div className='overflow-x-auto'>
-        <table className="w-full">
+        <table className="md:w-full w-[50vw]">
           <thead>
-            <tr className="bg-[#D6EDEF] text-[#0F2B46] text-[20px]">
+            <tr className="bg-[#D6EDEF] text-[#0F2B46] md:text-[20px]">
               <th className="py-4 px-4">ID</th>
               <th className="py-4 px-4">Research ID</th>
               <th className="py-4 px-4">Last Visit</th>
@@ -22,7 +22,7 @@ const Patients = () => {
           </thead>
           <tbody>
             {data.map((row) => (
-              <tr key={row.id} className='bg-[#FEFEFE] text-[20px] text-center border border-[1px]'>
+              <tr key={row.id} className='bg-[#FEFEFE] md:text-[20px] text-center border border-[1px]'>
                 <td className="py-5 px-4">
                   <Link to={`/patients/${row.id}`} state={row}>{row.id}</Link>
                 </td>
