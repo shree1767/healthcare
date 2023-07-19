@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = React.useState("");
   let navigate = useNavigate();
 
+  // Login Function
   const login = async (e) => {
     e.preventDefault();
     const res = await db.post("/login", {

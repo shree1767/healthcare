@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Modal from "react-modal";
@@ -9,6 +9,14 @@ import sec from "./assets/2.png";
 import heartimg from "./assets/heart.png";
 
 const PatientDetails = () => {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    const docData = JSON.parse(localStorage.getItem("docData"));
+    if (!docData) {
+      navigate("/");
+    }
+  }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = (image) => {

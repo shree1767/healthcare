@@ -1,11 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
-import bell from './assets/bell.svg';
-import userico from './assets/userico.svg';
-import logo from './assets/logo.svg';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
+import bell from "./assets/bell.svg";
+import userico from "./assets/userico.svg";
+import logo from "./assets/logo.svg";
+import { useEffect } from "react";
 
 const Navbar = () => {
+  const [name, setName] = useState("");
+  useEffect(() => {
+    const data = localStorage.getItem("docData");
+    if (data) {
+      const user = JSON.parse(data);
+      setName(user.name);
+    } else {
+      setName("");
+    }
+  }, []);
   return (
     <nav className="flex sm:flex-row items-center justify-between md:py-0 py-5 px-8 bg-[#006797] text-white">
       <div className="flex items-center space-x-5">
@@ -29,9 +40,14 @@ const Navbar = () => {
           <img src={bell} alt="Notification" className="md:w-full w-5" />
         </div>
         <div className="user-dropdown relative">
-          <Link to='/dashboard' className="flex space-x-2 items-center focus:outline-none">
+          <Link
+            to="/dashboard"
+            className="flex space-x-2 items-center focus:outline-none"
+          >
             <img src={userico} alt="User" className="md:w-1/2 w-10" />
-            <span className="text-[25px] md:block hidden font-[700]">Dr.Katja</span>
+            <span className="text-[25px] md:block hidden font-[700]">
+              {name}
+            </span>
           </Link>
         </div>
       </div>
@@ -40,4 +56,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

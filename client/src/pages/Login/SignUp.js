@@ -12,8 +12,7 @@ const SignUp = () => {
   const [error, setError] = React.useState("");
   let navigate = useNavigate();
 
-  // TODO: Implement register functionality using axios
-
+  // Register Function
   const register = async (e) => {
     e.preventDefault();
     if (password !== reEnterPassword) {
@@ -30,7 +29,7 @@ const SignUp = () => {
         localStorage.setItem("docData", JSON.stringify(res.data.data));
         navigate("/dashboard");
       } else {
-        setError("Invalid Credentials");
+        setError("User already exists");
       }
     } catch (error) {
       console.log(error);
