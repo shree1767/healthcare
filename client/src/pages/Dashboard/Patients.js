@@ -1,7 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Patients = () => {
+  let navigate = useNavigate();
+
+  useEffect (() => {
+    const docData = JSON.parse(localStorage.getItem("docData"));
+    if (!docData) {
+      navigate("/");
+    }
+  }, []);
   const data = [
     { id: '1001234', researchId: '123456', lastVisit: '10-Feb-2023', firstOccurrence: '06-Jun-2008', birthDate: '13/03/1976', Eye: 'Left', Apoplex: 'No', ArterielleHypertonie: 'No', BloodThinner: 'No', DiabetesMellitus: 'No', IVOMTherapy: 'Eylea', heartRate: '82', heartCondition: 'Normal' },
     { id: '1001235', researchId: '147896', lastVisit: '19-Jan-2023', firstOccurrence: '07-Jul-2021', birthDate: '15/07/1986' },

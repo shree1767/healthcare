@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import "./SideDash.css";
 import logout from "./logout.svg";
@@ -19,6 +19,7 @@ const SideDash = () => {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  let navigate = useNavigate();
 
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -76,9 +77,13 @@ const SideDash = () => {
                       {link.title}
                     </NavLink>
                   ))}
-                  <Link
-                    to="/"
+                  <div
                     className="p-4 pt-[50vh] flex space-x-3 rounded-lg font-light cursor-pointer"
+                    onClick={() => {
+                      // Logout functionality
+                      localStorage.removeItem("docData");
+                      navigate("/");
+                    }}
                   >
                     <img
                       src={logout}
@@ -86,13 +91,13 @@ const SideDash = () => {
                       className="logout-icon w-5 h-5"
                     />
                     <span>Logout</span>
-                  </Link>
+                  </div>
                 </div>
               </div>
             )}
           </Transition>
         </nav>
-        </div>
+      </div>
 
       {/* Other components taking up 1/2 screen width */}
       {/* ... */}
@@ -116,13 +121,17 @@ const SideDash = () => {
             </NavLink>
           ))}
         </div>
-        <Link
-          to="/"
+        <div
           className="p-4 mt-[30vh] flex space-x-3 rounded-lg font-light cursor-pointer"
+          onClick={() => {
+            // Logout functionality
+            localStorage.removeItem("docData");
+            navigate("/");
+          }}
         >
           <img src={logout} alt="logout" className="logout-icon" />
           <span>Logout</span>
-        </Link>
+        </div>
       </nav>
     </>
   );

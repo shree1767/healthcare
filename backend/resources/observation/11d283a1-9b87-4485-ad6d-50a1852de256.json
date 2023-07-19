@@ -1,0 +1,247 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "id": "1",
+  "entry": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "237701005",
+              "display": "Pituitary apoplexy"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "38341003",
+              "display": "High blood pressure"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "73211009",
+              "display": "Diabetes mellitus"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "22298006",
+              "display": "Heart attack"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "421843005",
+              "display": "Subretinal fluid"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "52002008",
+              "display": "Serous detachment of retinal pigment epithelium"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "247162007",
+              "display": "Subretinal fibrosis"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "280662007",
+              "display": "Entire retinal pigment epithelium"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "280676008",
+              "display": "Entire external limiting membrane of retina"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "193795008",
+              "display": "Corneal scars and opacities"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "309523001",
+              "display": "Pseudophakia"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "Observation"
+      },
+      "resource": {
+        "resourceType": "Observation",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "312912001",
+              "display": "Diabetic macular edema"
+            }
+          ]
+        },
+        "valueBoolean": true
+      }
+    }
+  ]
+}
