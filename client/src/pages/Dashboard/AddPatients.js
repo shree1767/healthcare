@@ -1,35 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import db from "../../utils/db";
+import { useNavigate } from "react-router-dom";
 
 const AddPatients = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [day, setDay] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-  const [sex, setSex] = useState('Please Select');
-  const [contactNumber, setContactNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [sex, setSex] = useState("Please Select");
+  const [contactNumber, setContactNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Create a new patient object with the entered details
+    const newPatient = await db.get("/generate");
+    console.log(newPatient);
+    if (newPatient.data.status === "success") {
+      alert("The data is Fhir Validated");
+    }
 
     // Perform any additional logic (e.g., API call to add the patient to the database)
 
     // Reset the form fields
-    setFirstName('');
-    setLastName('');
-    setDay('');
-    setMonth('');
-    setYear('');
-    setSex('Please Select');
-    setContactNumber('');
-    setEmail('');
-    setAddress('');
+    setFirstName("");
+    setLastName("");
+    setDay("");
+    setMonth("");
+    setYear("");
+    setSex("Please Select");
+    setContactNumber("");
+    setEmail("");
+    setAddress("");
 
     // Redirect to the '/patients' route or update the patient list state
+    navigate("/patients");
   };
 
   // Options for the date dropdown (1-31)
@@ -37,18 +47,18 @@ const AddPatients = () => {
 
   // Options for the month dropdown (January-December)
   const monthOptions = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   // Options for the year dropdown (1900-2023)
@@ -161,7 +171,10 @@ const AddPatients = () => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-4 mb-4">
-          <label htmlFor="contactNumber" className="font-medium md:py-3 text-lg">
+          <label
+            htmlFor="contactNumber"
+            className="font-medium md:py-3 text-lg"
+          >
             Contact Number
           </label>
           <input
@@ -215,4 +228,3 @@ const AddPatients = () => {
 };
 
 export default AddPatients;
-
