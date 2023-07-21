@@ -21,7 +21,7 @@ const newObservation = (data) => {
 
 
 
-        fs.writeFile(`./resources/observation/${uuidv4()}.json`, jsondata, 'utf8', (error) => {
+        fs.writeFile(`../resources/observation/${uuidv4()}.json`, jsondata, 'utf8', (error) => {
             if (error) {
                 console.error('Error writing to the file:', error);
                 return;

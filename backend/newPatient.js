@@ -18,7 +18,7 @@ const newPatient = (data)=>{
     const result = fhir.validate(jsondata)
     if(result["errors"].length === 0){
 
-        fs.writeFile(`./resources/patient/${currPID}.json`, jsondata, 'utf8', (error) => {
+        fs.writeFile(`../resources/patient/${currPID}.json`, jsondata, 'utf8', (error) => {
             if (error) {
             console.error('Error writing to the file:', error);
             return;
