@@ -7,14 +7,14 @@ import logo from "./assets/logo.svg";
 import { useEffect } from "react";
 
 const Navbar = () => {
-  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   useEffect(() => {
     const data = localStorage.getItem("docData");
     if (data) {
       const user = JSON.parse(data);
-      setName(user.name);
+      setId(user.doctorID);
     } else {
-      setName("");
+      setId("");
     }
   }, []);
   return (
@@ -39,15 +39,13 @@ const Navbar = () => {
           {/* Insert your notification icon component here */}
           <img src={bell} alt="Notification" className="md:w-full w-5" />
         </div>
-        <div className="user-dropdown relative">
+        <div className="user-dropdown relative w-full">
           <Link
             to="/dashboard"
             className="flex space-x-2 items-center focus:outline-none"
           >
             <img src={userico} alt="User" className="md:w-1/2 w-10" />
-            <span className="text-[25px] md:block hidden font-[700]">
-              {name}
-            </span>
+            <span className="text-[25px] md:block hidden font-[700]">{id}</span>
           </Link>
         </div>
       </div>

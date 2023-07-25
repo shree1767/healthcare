@@ -19,6 +19,9 @@ const SignUp = () => {
       return setError("Passwords do not match");
     }
     try {
+      if (doctorID.length !== 6) {
+        return setError("Doctor ID must be of 6 characters");
+      }
       const res = await db.post("/register", {
         doctorID,
         password,
@@ -26,8 +29,7 @@ const SignUp = () => {
       });
 
       if (res.data.status === "success") {
-        localStorage.setItem("docData", JSON.stringify(res.data.data));
-        navigate("/dashboard");
+        navigate("/");
       } else {
         setError("User already exists");
       }

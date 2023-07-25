@@ -1,8 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   let navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  useEffect(() => {
+    const data = localStorage.getItem("docData");
+    if (data) {
+      const user = JSON.parse(data);
+      setName(user.name);
+    } else {
+      setName("");
+    }
+  }, []);
 
   useEffect(() => {
     const docData = JSON.parse(localStorage.getItem("docData"));
@@ -12,7 +23,7 @@ const Dashboard = () => {
   }, []);
   return (
     <div className="pt-10 pl-4 mx-auto  md:w-[70vw] overflow-y-auto md:h-[80vh] h-[90vh]">
-      <h1 className="text-[25px] font-[400] text-[#0F2B46]">Hi Dr. Katja!</h1>
+      <h1 className="text-[25px] font-[400] text-[#0F2B46]">Hi Dr. {name}</h1>
       <p className="text-[20px] font-[400] text-[#5B777A]">
         Your data at a glance
       </p>
