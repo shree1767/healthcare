@@ -120,17 +120,13 @@ app.post("/register", async (req, res) => {
         name: name,
       },
     });
-    const doctor = await prisma.user.findUnique({
+    await prisma.user.findUnique({
       where: {
         doctorID: doctorID,
       },
     });
     return res.send({
       status: "success",
-      data: {
-        doctorID: doctor.doctorID,
-        name: doctor.name,
-      },
     });
   } catch (error) {
     console.log(error);
