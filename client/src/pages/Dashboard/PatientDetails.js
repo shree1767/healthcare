@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import "./carousel.css";
 import first from "./assets/1.png";
 import sec from "./assets/2.png";
-import {Line} from 'react-chartjs-2';
+import {Line, Scatter} from 'react-chartjs-2';
 
 import {
     CategoryScale,
@@ -28,6 +28,8 @@ ChartJS.register(
     Tooltip,
     Legend
 );
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels2 = ['RPED', 'RPE', 'Subretinal Fluid', 'Interaretinal Fluid', 'Scars', 'Foveal Depression', 'Ellipsiod', 'ELM'];
 
 export const options = {
     scales: {
@@ -36,8 +38,23 @@ export const options = {
         },
     },
 };
+export const options2 = {
+    indexAxis: 'y',
+    scales: {
+        x: {
+            type: 'category', // This specifies that the X axis is a category axis with custom labels
+            labels: labels,
+        },
+        y: {
+            ticks: {
+                callback: function (value, index, values) {
+                    return labels2[index]; // Use custom labels for Y axis
+                },
+            },
+        },
+    },
+};
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 export const data = {
     labels,
     datasets: [
@@ -53,8 +70,77 @@ export const data = {
     ]
 };
 
+const dataArr = [];
+const setDataArr = () => {
+    labels.map((item, index) => {
+        if (healthData[0]["O RPE Detechment"] === "true") {
+            dataArr.push({
+                x: index + 1,
+                y: 1
+            });
+        }
+        if (healthData[0]["O RPE"] === "true") {
+            dataArr.push({
+                x: index + 1,
+                y: 2
+            });
+        }
+        if (healthData[0]["O Subretinal Fluid"] === "true") {
+            dataArr.push({
+                x: index + 1,
+                y: 3
+            });
+        }
+        if (healthData[0]["O Interaretinal Fluid"] === "true") {
+            dataArr.push({
+                x: index + 1,
+                y: 4
+            });
+        }
+        if (healthData[0]["O Scars"] !== -1) {
+            dataArr.push({
+                x: index + 1,
+                y: 5
+            });
+        }
+        if (healthData[0]["O Foveal Depression"] === "true") {
+            dataArr.push({
+                x: index + 1,
+                y: 6
+            });
+        }
+        if (healthData[0]["O Ellipsiod"] !== -1) {
+            dataArr.push({
+                x: index + 1,
+                y: 7
+            });
+        }
+        if (healthData[0]["O ELM"] !== -1) {
+            dataArr.push({
+                x: index + 1,
+                y: 8
+            });
+        }
+    });
+    return dataArr;
+}
+
+
+export const data2 = {
+    labels: labels2,
+    datasets: [
+        {
+            label: 'OCT Biomarkers',
+            data: setDataArr(),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }
+    ]
+};
+
 const PatientDetails = () => {
     let navigate = useNavigate();
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const docData = JSON.parse(localStorage.getItem("docData"));
@@ -108,19 +194,30 @@ const PatientDetails = () => {
                     </Link>
                 }
             </div>
-            <div className="px-5">
-                {/*<div className="">*/}
-                {/*    <Carousel showArrows={true} className="custom-carousel">*/}
-                {/*        <button onClick={() => openModal('first')}>*/}
-                {/*            <img src={first} alt="first" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>*/}
-                {/*        </button>*/}
-                {/*        <button onClick={() => openModal('second')}>*/}
-                {/*            <img src={sec} alt="second" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>*/}
-                {/*        </button>*/}
-                {/*    </Carousel>*/}
-                {/*</div>*/}
-                <div className={"w-full lg:w-1/2"}>
-                    <Line options={options} data={data}/>
+            <div className={"w-full flex gap-5"}>
+
+                <div className={"cursor-pointer bg-blue-500 px-4 py-2 rounded-lg w-fit text-white"} onClick={
+                    () => {
+                        setPage(1);
+                    }
+                }>
+                    <h1>Prev Page</h1>
+                </div>
+                <div className={"cursor-pointer bg-blue-500 px-4 py-2 rounded-lg w-fit text-white"} onClick={
+                    () => {
+                        setPage(2);
+                    }
+                }>
+                    <h1>Next Page</h1>
+                </div>
+            </div>
+            <div className="px-5 w-full">
+                <div className={"w-full lg:w-1/2 flex gap-5 flex-wrap"}>
+                    {page === 1 ?
+                        <Line options={options} data={data}/>
+                        :
+                        <Scatter options={options2} data={data2}/>
+                    }
                 </div>
 
                 <Modal
