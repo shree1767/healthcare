@@ -28,8 +28,12 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 const labels2 = ['RPED', 'RPE', 'Subretinal Fluid', 'Interaretinal Fluid', 'Scars', 'Foveal Depression', 'Ellipsiod', 'ELM'];
+const labels3 = ['SMD', 'Cataract', 'Pseudophakia', 'RVO', 'Scars', 'DME', 'Diabetic Rethinopathy', 'Epiretinal membrane', 'Previous Therapy'];
 
 export const options = {
     scales: {
@@ -54,6 +58,22 @@ export const options2 = {
         },
     },
 };
+export const options3 = {
+    indexAxis: 'y',
+    scales: {
+        x: {
+            type: 'category', // This specifies that the X axis is a category axis with custom labels
+            labels: labels,
+        },
+        y: {
+            ticks: {
+                callback: function (value, index, values) {
+                    return labels3[index]; // Use custom labels for Y axis
+                },
+            },
+        },
+    },
+};
 
 export const data = {
     labels,
@@ -70,57 +90,140 @@ export const data = {
     ]
 };
 
+function extractMonthFromDate(dateString) {
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const [year, month, day] = dateString.split('-');
+    const monthIndex = parseInt(month, 10) - 1;
+
+    // Return the month name
+    return monthNames[monthIndex];
+}
+
 const dataArr = [];
 const setDataArr = () => {
-    labels.map((item, index) => {
-        if (healthData[0]["O RPE Detechment"] === "true") {
-            dataArr.push({
-                x: index + 1,
-                y: 1
-            });
-        }
-        if (healthData[0]["O RPE"] === "true") {
-            dataArr.push({
-                x: index + 1,
-                y: 2
-            });
-        }
-        if (healthData[0]["O Subretinal Fluid"] === "true") {
-            dataArr.push({
-                x: index + 1,
-                y: 3
-            });
-        }
-        if (healthData[0]["O Interaretinal Fluid"] === "true") {
-            dataArr.push({
-                x: index + 1,
-                y: 4
-            });
-        }
-        if (healthData[0]["O Scars"] !== -1) {
-            dataArr.push({
-                x: index + 1,
-                y: 5
-            });
-        }
-        if (healthData[0]["O Foveal Depression"] === "true") {
-            dataArr.push({
-                x: index + 1,
-                y: 6
-            });
-        }
-        if (healthData[0]["O Ellipsiod"] !== -1) {
-            dataArr.push({
-                x: index + 1,
-                y: 7
-            });
-        }
-        if (healthData[0]["O ELM"] !== -1) {
-            dataArr.push({
-                x: index + 1,
-                y: 8
-            });
-        }
+    console.log(healthData);
+    labels.map((item) => {
+        healthData.map((items, index) => {
+            const month = extractMonthFromDate(items["Date"]);
+            if (month === item) {
+                // Once the data is uniform and fixed replace the index value in healthData from healthData[0] to healthData[index] everywhere
+                if (healthData[0]["O RPE Detechment"] === "true") {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 1
+                    });
+                }
+                if (healthData[0]["O RPE"] === "true") {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 2
+                    });
+                }
+                if (healthData[0]["O Subretinal Fluid"] === "true") {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 3
+                    });
+                }
+                if (healthData[0]["O Interaretinal Fluid"] === "true") {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 4
+                    });
+                }
+                if (healthData[0]["O Scars"] !== -1) {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 5
+                    });
+                }
+                if (healthData[0]["O Foveal Depression"] === "true") {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 6
+                    });
+                }
+                if (healthData[0]["O Ellipsiod"] !== -1) {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 7
+                    });
+                }
+                if (healthData[0]["O ELM"] !== -1) {
+                    dataArr.push({
+                        x: index + 1,
+                        y: 8
+                    });
+                }
+
+            }
+        });
+
+    });
+    return dataArr;
+}
+
+const dataArr2 = [];
+const setDataArr2 = () => {
+    console.log(healthData);
+    labels.map((item) => {
+        healthData.map((items, index) => {
+            const month = extractMonthFromDate(items["Date"]);
+            if (month === item) {
+                // Once the data is uniform and fixed replace the index value in healthData from healthData[0] to healthData[index] everywhere
+                if (healthData[0]["Previous therapy"] === "true") {
+                    dataArr2.push({
+                        x: index + 1,
+                        y: 1
+                    });
+                }
+                // For Epiretinal membrane
+                dataArr2.push({
+                    x: index + 1,
+                    y: 2
+                });
+
+                if (healthData[0]["D Diabetic retinopathy"] === "true") {
+                    dataArr2.push({
+                        x: index + 1,
+                        y: 3
+                    });
+                }
+                if (healthData[0]["D DME"] === "true") {
+                    dataArr2.push({
+                        x: index + 1,
+                        y: 4
+                    });
+                }
+                dataArr2.push({
+                    x: index + 1,
+                    y: 5
+                });
+
+                if (healthData[0]["D Pseudophakie"] === "true") {
+                    dataArr2.push({
+                        x: index + 1,
+                        y: 6
+                    });
+                }
+                dataArr2.push({
+                    x: index + 1,
+                    y: 7
+                });
+
+                dataArr2.push({
+                    x: index + 1,
+                    y: 8
+                });
+
+
+            }
+        });
+
     });
     return dataArr;
 }
@@ -134,6 +237,18 @@ export const data2 = {
             data: setDataArr(),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        }
+    ]
+};
+
+export const data3 = {
+    labels: labels2,
+    datasets: [
+        {
+            label: 'Diagnoses',
+            data: setDataArr2(),
+            borderColor: 'rgb(20,88,166)',
+            backgroundColor: 'rgba(24,87,225,0.5)',
         }
     ]
 };
@@ -198,14 +313,18 @@ const PatientDetails = () => {
 
                 <div className={"cursor-pointer bg-blue-500 px-4 py-2 rounded-lg w-fit text-white"} onClick={
                     () => {
-                        setPage(1);
+                        if (page !== 1) {
+                            setPage(page - 1);
+                        }
                     }
                 }>
-                    <h1>Prev Page</h1>
+                    <h1>Previous Page</h1>
                 </div>
                 <div className={"cursor-pointer bg-blue-500 px-4 py-2 rounded-lg w-fit text-white"} onClick={
                     () => {
-                        setPage(2);
+                        if (page !== 3) {
+                            setPage(page + 1);
+                        }
                     }
                 }>
                     <h1>Next Page</h1>
@@ -216,7 +335,9 @@ const PatientDetails = () => {
                     {page === 1 ?
                         <Line options={options} data={data}/>
                         :
-                        <Scatter options={options2} data={data2}/>
+                        page === 2 ?
+                            <Scatter options={options2} data={data2}/> :
+                            <Scatter options={options3} data={data3}/>
                     }
                 </div>
 
