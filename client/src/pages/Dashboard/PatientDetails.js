@@ -1,12 +1,57 @@
 import React, {useEffect, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {Carousel} from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Modal from "react-modal";
 import "./carousel.css";
 import first from "./assets/1.png";
 import sec from "./assets/2.png";
-import heartimg from "./assets/heart.png";
+import {Line} from 'react-chartjs-2';
+
+import {
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+} from 'chart.js';
+import healthData from "../../data/healthData.json";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+export const options = {
+    scales: {
+        y: {
+            beginAtZero: true,
+        },
+    },
+};
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export const data = {
+    labels,
+    datasets: [
+        {
+            label: 'Visual Acuity',
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            data: healthData.map((item) => ({
+                x: item["Index"],
+                y: item["Previous Visus"],
+            })),
+        },
+    ]
+};
 
 const PatientDetails = () => {
     let navigate = useNavigate();
@@ -41,25 +86,18 @@ const PatientDetails = () => {
                 <div className="">
                     <p className="font-[700]">ID: {patient.id}</p>
                     <p>ResearchID: {patient.researchId}</p>
-                    <p>Birth-Date: {patient.birthDate}</p>
-                    <p>Eye: {patient.Eye}</p>
+                    <p>Birth-Date: {healthData[0].Date}</p>
+                    <p>Eye: {healthData[0]["Side"]}</p>
                 </div>
                 <div className="">
-                    <p>Apoplex: {patient.Apoplex}</p>
-                    <p>Arterielle Hypertonie: {patient.ArterielleHypertonie}</p>
-                    <p>Blood Thinner:{patient.BloodThinner}</p>
-                    <p>Diabetes Mellitus:{patient.DiabetesMellitus}</p>
+                    <p>Apoplex: {healthData[0].Apoplex === "false" ? "No" : "Yes"}</p>
+                    <p>Arterielle Hypertonie: {healthData[0]["arterielle Hypertonie"] === -1 ? "No" : "Yes"}</p>
+                    <p>Blood Thinner:{healthData[0]["Blood Thinner"] === "-1" ? "No" : "Yes"}</p>
+                    <p>Diabetes Mellitus:{healthData[0]["Diabetes mellitus"] === -1 ? "No" : "Yes"}</p>
                 </div>
                 <div className="">
-                    <div
-                        className="flex space-x-5 bg-white rounded-lg items-center text-center w-[45vw] md:w-[23vw] px-5 py-3 mb-2">
-                        <img src={heartimg} alt="heartimg" className="w-[8vw] h-[8vw] md:w-[5vw] md:h-[5vw]"/>
-                        <div>
-                            <p>{patient.heartRate}</p>
-                            <p className="text-[#008C16]">{patient.heartCondition}</p>
-                        </div>
-                    </div>
-                    <p>IVOM Therapy:{patient.IVOMTherapy}</p>
+                    <img className={"w-32"}
+                         src="https://cdn.pixabay.com/animation/2023/06/26/14/52/14-52-08-199_512.gif" alt="/"/>
                 </div>
                 {
                     <Link
@@ -71,15 +109,18 @@ const PatientDetails = () => {
                 }
             </div>
             <div className="px-5">
-                <div className="">
-                    <Carousel showArrows={true} className="custom-carousel">
-                        <button onClick={() => openModal('first')}>
-                            <img src={first} alt="first" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>
-                        </button>
-                        <button onClick={() => openModal('second')}>
-                            <img src={sec} alt="second" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>
-                        </button>
-                    </Carousel>
+                {/*<div className="">*/}
+                {/*    <Carousel showArrows={true} className="custom-carousel">*/}
+                {/*        <button onClick={() => openModal('first')}>*/}
+                {/*            <img src={first} alt="first" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>*/}
+                {/*        </button>*/}
+                {/*        <button onClick={() => openModal('second')}>*/}
+                {/*            <img src={sec} alt="second" className="max-w-[60vw] md:max-w-[25vw] cursor-pointer"/>*/}
+                {/*        </button>*/}
+                {/*    </Carousel>*/}
+                {/*</div>*/}
+                <div className={"w-full lg:w-1/2"}>
+                    <Line options={options} data={data}/>
                 </div>
 
                 <Modal

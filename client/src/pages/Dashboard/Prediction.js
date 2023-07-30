@@ -1,7 +1,108 @@
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import back from './assets/back.svg';
-import prediction from './assets/prediction.png';
+
+import {Scatter} from 'react-chartjs-2';
+import healthData from "../../data/healthData.json";
+
+import {
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+} from 'chart.js';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+export const options = {
+    scales: {
+        y: {
+            beginAtZero: true,
+        },
+    },
+};
+
+
+export const data = {
+    datasets: [
+        {
+            label: 'IVOM 1',
+            data: [{
+                x: 1,
+                y: healthData[4]["IVOM therapy Prediction Model 1"]
+            }],
+            backgroundColor: 'rgb(255, 99, 132)'
+        },
+        {
+            label: 'IVOM 2',
+            data: [{
+                x: 2,
+                y: healthData[4]["IVOM therapy Prediction Model 2"]
+            }],
+            backgroundColor: 'rgb(99,120,255)'
+        },
+        {
+            label: 'No Therapy 1',
+            data: [{
+                x: 3,
+                y: healthData[4]["No therapy Prediction Model 1"]
+            }],
+            backgroundColor: 'rgb(156,255,99)'
+        },
+        {
+            label: 'No Therapy 2',
+            data: [{
+                x: 4,
+                y: healthData[4]["No therapy Prediction Model 2"]
+            }],
+            backgroundColor: 'rgb(255,206,99)'
+        },
+        {
+            label: 'PPV1',
+            data: [{
+                x: 5,
+                y: healthData[4]["Pars-plana-Vitrektomie Prediction Model 1"]
+            }],
+            backgroundColor: 'rgb(99,255,237)'
+        },
+        {
+            label: 'PPV2',
+            data: [{
+                x: 6,
+                y: healthData[4]["Pars-plana-Vitrektomie Prediction Model 2"]
+            }],
+            backgroundColor: 'rgb(226,99,255)'
+        },
+        {
+            label: 'Laser Therapy',
+            data: [{
+                x: 7,
+                y: healthData[4]["Laser therapy Predicition Model 1"]
+            }],
+            backgroundColor: 'rgb(226,99,255)'
+        },
+        {
+            label: 'Laser Therapy',
+            data: [{
+                x: 8,
+                y: healthData[4]["Laser therapy Predicition Model 2"]
+            }],
+            backgroundColor: 'rgb(133,18,239)'
+        },
+    ],
+};
 
 const Prediction = () => {
     const location = useLocation();
@@ -50,8 +151,8 @@ const Prediction = () => {
                     </div>
                 </div>
             </div>
-            <div className='mt-4'>
-                <img src={prediction} alt='prediction' className='w-full md:w-[55vw] mx-auto'/>
+            <div className='mt-8'>
+                <Scatter options={options} data={data}/>
             </div>
         </div>
     );
