@@ -87,6 +87,15 @@ export const data = {
                 y: item["Previous Visus"],
             })),
         },
+        {
+            label: 'Central Retinal Thickness',
+            borderColor: 'rgb(26,42,213)',
+            backgroundColor: 'rgba(99,112,255,0.5)',
+            data: healthData.map((item) => ({
+                y: item["Index"],
+                x: item["Previous Visus"],
+            })),
+        },
     ]
 };
 
@@ -225,7 +234,7 @@ const setDataArr2 = () => {
         });
 
     });
-    return dataArr;
+    return dataArr2;
 }
 
 
